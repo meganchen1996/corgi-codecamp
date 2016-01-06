@@ -1,0 +1,19 @@
+<p><%= link_to "Home", puppies_url() %></p>
+
+<h1>Puppy owned by <%= @puppy.owner %></h1>
+<p>Color: <%= @puppy.color %></p>
+<p>Description: <%= @puppy.description %></p>
+
+<h2>Suggestions </h2>
+<ul>
+	<% @puppy.suggestions.each do |suggestion| %>
+		<li><%= suggestion.name %></li>
+	<% end %>
+</ul>
+
+<%= form_for [@puppy, @puppy.suggestions.build] do |f| %>
+	<p>Suggestion: <%= f.text_field :name, required: true %></p>
+	<%= f.submit %> 
+<%end%>
+
+<p><%= link_to "Edit", edit_puppy_url(@puppy) %></p>
